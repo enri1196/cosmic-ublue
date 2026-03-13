@@ -10,7 +10,14 @@ set -ouex pipefail
 # https://mirrors.rpmfusion.org/mirrorlist?path=free/fedora/updates/43/x86_64/repoview/index.html&protocol=https&redirect=1
 
 # this installs a package from fedora repos
-dnf5 install -y tmux 
+dnf install -y @cosmic-desktop-environment cosmic-greeter
+
+# Boot into a graphical session with COSMIC.
+# COSMIC provides its own display manager (cosmic-greeter).
+systemctl set-default graphical.target
+systemctl enable cosmic-greeter.service
+# Some images can be missing the display-manager.service alias; ensure it's present.
+ln -sf /usr/lib/systemd/system/cosmic-greeter.service /etc/systemd/system/display-manager.service
 
 # Use a COPR Example:
 #
