@@ -28,13 +28,22 @@ dnf install -y \
   vkbasalt \
   vulkan-tools
 
-# Gaming apps (Flatpaks)
+# Flatpak
 dnf install -y flatpak
 flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
+
+# Gaming apps (Flatpaks)
 flatpak install -y --system flathub \
+  dev.vencord.Vesktop \
   com.heroicgameslauncher.hgl \
-  com.valvesoftware.Steam \
-  net.davidotek.pupgui2
+  com.valvesoftware.Steam
+
+# Utils apps (Flatpaks)
+flatpak install -y --system app.zen_browser.zen \
+  com.bitwarden.desktop \
+  org.telegram.desktop \
+  com.github.tchx84.Flatseal \
+  org.qbittorrent.qBittorrent
 
 # Use a COPR Example:
 #
