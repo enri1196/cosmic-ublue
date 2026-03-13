@@ -10,7 +10,7 @@ set -ouex pipefail
 # https://mirrors.rpmfusion.org/mirrorlist?path=free/fedora/updates/43/x86_64/repoview/index.html&protocol=https&redirect=1
 
 # this installs a package from fedora repos
-dnf install -y @cosmic-desktop-environment cosmic-greeter
+dnf install -y @cosmic-desktop-environment cosmic-greeter xdg-desktop-portal xdg-desktop-portal-cosmic
 
 # Boot into a graphical session with COSMIC.
 # COSMIC provides its own display manager (cosmic-greeter).
@@ -18,6 +18,23 @@ systemctl set-default graphical.target
 systemctl enable cosmic-greeter.service
 # Some images can be missing the display-manager.service alias; ensure it's present.
 ln -sf /usr/lib/systemd/system/cosmic-greeter.service /etc/systemd/system/display-manager.service
+
+### Gaming essentials
+dnf install -y \
+  gamescope \
+  gamemode \
+  mangohud \
+  steam-devices \
+  vkbasalt \
+  vulkan-tools
+
+# Gaming apps (Flatpaks)
+dnf install -y flatpak
+flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
+flatpak install -y --system flathub \
+  com.heroicgameslauncher.hgl \
+  com.valvesoftware.Steam \
+  net.davidotek.pupgui2
 
 # Use a COPR Example:
 #
